@@ -1,0 +1,38 @@
+name: Issue Badge & Certificate
+
+on:
+  repository_dispatch:
+    types: [issue-badge]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install qrcode puppeteer
+
+      - name: Generate Assets and Sign
+        env:
+          PRIVATE_KEY: ${{ secrets.ISSUER_PRIVATE_KEY }}
+          CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: node scripts/generate.js
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "DEKRA Badge Bot"
+          git config --global user.email "bot@dekra.com"
+          git add data/ certs/
+          git commit -m "Zertifikat ausgestellt: ${{ github.event.client_payload.credentialId }}" || exit 0
+          git push origin main
