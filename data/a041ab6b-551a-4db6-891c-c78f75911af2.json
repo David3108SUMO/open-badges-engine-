@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2"
+  ],
+  "id": "urn:uuid:a041ab6b-551a-4db6-891c-c78f75911af2",
+  "type": [
+    "VerifiableCredential",
+    "CourseCompletionCertificate"
+  ],
+  "issuer": {
+    "id": "https://David3108SUMO.github.io/open-badges-engine-/.well-known/public.pem",
+    "name": "DEKRA Akademie GmbH"
+  },
+  "validFrom": "2026-08-21T09:36:20.8364853Z",
+  "credentialSubject": {
+    "id": "urn:uuid:a041ab6b-551a-4db6-891c-c78f75911af2",
+    "recipientName": "David Schwarz",
+    "achievementName": "Microsoft Power Platform - Automatisierung mit Power Automate - Online",
+    "issuedAt": "2026-08-21T09:36:20.8364853Z"
+  },
+  "proof": {
+    "type": "JsonWebSignature2020",
+    "verificationMethod": "https://David3108SUMO.github.io/open-badges-engine-/.well-known/public.pem",
+    "signature": "MEQCIEILISX0ikQBSs032dkcZZRTlFxueUQcRHBgOY/tkvLjAiBQrtVSu3Y7H38gy0uDZzDpfbCmhz6BdImHPOh4shChsg=="
+  }
+}
